@@ -1,8 +1,4 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { useDispatch, useSelector } from "react-redux";
-import { increaseCounter, decreaseCounter } from "./redux/action/counterAction";
-import MyComponent from "./components/MyComponent";
 import React from "react";
 
 class App extends React.Component {
@@ -16,17 +12,26 @@ class App extends React.Component {
     console.log(">>> Click me button!", event.target);
     this.setState({ name: "Eric1", age: Math.floor(Math.random() * 100 + 1) });
   };
-  handleMouseOver = () => {
-    console.log("My name is " + this.state.name);
+
+  handleOnChange = (event) => {
+    this.setState({
+      name: event.target.value,
+    });
   };
+
+  handleOnSubmit = (event) => {
+    event.preventDefault();
+  };
+
   render() {
     return (
       <div>
-        My name is {this.state.name} and I'm {this.state.age}
-        <br />
-        <button onClick={(event) => this.handleClick(event)}>Click me</button>
-        <br />
-        <button onMouseOver={this.handleMouseOver}>Hover</button>
+        <form onSubmit={(event) => this.handleOnSubmit(event)}>
+          My name is {this.state.name} and I'm {this.state.age}
+          <br />
+          <input type="text" onChange={(e) => this.handleOnChange(e)} />
+          <button>Submit</button>
+        </form>
       </div>
     );
   }
