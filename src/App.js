@@ -1,37 +1,12 @@
 import "./App.css";
 import React from "react";
+import MyComponent from "./components/MyComponent";
 
 class App extends React.Component {
-  state = {
-    name: "Eric",
-    address: "Hoi dan it",
-    age: 26,
-  };
-
-  handleClick = (event) => {
-    console.log(">>> Click me button!", event.target);
-    this.setState({ name: "Eric1", age: Math.floor(Math.random() * 100 + 1) });
-  };
-
-  handleOnChange = (event) => {
-    this.setState({
-      name: event.target.value,
-    });
-  };
-
-  handleOnSubmit = (event) => {
-    event.preventDefault();
-  };
-
   render() {
     return (
       <div>
-        <form onSubmit={(event) => this.handleOnSubmit(event)}>
-          My name is {this.state.name} and I'm {this.state.age}
-          <br />
-          <input type="text" onChange={(e) => this.handleOnChange(e)} />
-          <button>Submit</button>
-        </form>
+        <MyComponent />
       </div>
     );
   }

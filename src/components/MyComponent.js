@@ -1,11 +1,11 @@
 import React, { Component } from "react";
+import UserInfor from "./UserInfor";
 
 export default class MyComponent extends Component {
   render() {
     return (
       <div>
-        My first component
-        {Math.random()}
+        <UserInfor />
       </div>
     );
   }
