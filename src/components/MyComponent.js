@@ -17,13 +17,27 @@ export default class MyComponent extends Component {
     });
   };
 
+  handleDeleteUser = (userId) => {
+    let listUsersAfterDelete = this.state.listUsers.filter(
+      (user) => user.id !== userId
+    );
+    this.setState({
+      listUsers: listUsersAfterDelete,
+    });
+  };
+
   render() {
     return (
       //DRY: don't repeat yourself
       <>
         <AddUserInfor handleAddUser={this.handleAddUser} />
         <hr />
-        <DisplayInfor name="Eric" age={29} listUsers={this.state.listUsers} />
+        <DisplayInfor
+          name="Eric"
+          age={29}
+          listUsers={this.state.listUsers}
+          handleDeleteUser={this.handleDeleteUser}
+        />
       </>
     );
   }
