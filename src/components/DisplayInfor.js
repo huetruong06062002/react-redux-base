@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./DisplayInfor.scss";
+import logo from "./../logo.svg";
 
 export default class DisplayInfor extends Component {
   state = {
@@ -19,6 +20,7 @@ export default class DisplayInfor extends Component {
             {this.state.isShowHide ? "Hide list users" : "Show list users"}
           </button>
         </div>
+        <img src={logo} />
         <div className="display-infor-container">
           {this.state.isShowHide &&
             listUsers.map((user) => (
