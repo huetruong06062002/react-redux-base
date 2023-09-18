@@ -20,11 +20,11 @@ export default class MyComponent extends Component {
   render() {
     return (
       //DRY: don't repeat yourself
-      <div>
+      <>
         <AddUserInfor handleAddUser={this.handleAddUser} />
         <hr />
         <DisplayInfor name="Eric" age={29} listUsers={this.state.listUsers} />
-      </div>
+      </>
     );
   }
 }
