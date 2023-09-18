@@ -5,9 +5,9 @@ import DisplayInfor from "./DisplayInfor";
 export default class MyComponent extends Component {
   state = {
     listUsers: [
-      { id: 1, name: "Hoi dan it", age: "28" },
+      { id: 1, name: "Hoi dan it", age: "18" },
       { id: 2, name: "Eric", age: "29" },
-      { id: 2, name: "HaryPham Dev", age: "30" },
+      { id: 3, name: "HaryPham Dev", age: "30" },
     ],
   };
 
