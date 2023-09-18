@@ -2,13 +2,14 @@ import React, { Component } from "react";
 
 export default class DisplayInfor extends Component {
   render() {
-    const { name, age } = this.props;
-    return (
+    const { listUsers } = this.props;
+    console.log(listUsers);
+    return listUsers.map((user) => (
       <div>
-        {" "}
-        <p>Name: {name}</p>
-        <p>Age: {age}</p>
+        <p>Name: {user.name} </p>
+        <p>Age: {user.age} </p>
+        <hr />
       </div>
-    );
+    ));
   }
 }
