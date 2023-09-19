@@ -3,16 +3,40 @@ import "./DisplayInfor.scss";
 import logo from "./../logo.svg";
 
 export default class DisplayInfor extends Component {
-  state = {
-    isShowHide: false,
-  };
+  constructor(props) {
+    super(props);
+    //babel compiler
+    this.state = {
+      isShowListUser: true,
+    };
+    console.log(">>> Call me constructor");
+  }
 
   handleShowHide = () => {
     this.setState({ isShowHide: !this.state.isShowHide });
   };
 
+  componentDidMount() {
+    console.log(">>> Call me component did mount");
+    setTimeout(() => {
+      document.title = "Eric";
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState, snapShot) {
+    console.log(
+      ">>> Call me component did update",
+      this.props.listUsers,
+      prevProps.listUsers
+    );
+    if (this.props.listUsers.length === 5) {
+      alert("You have 5 members in list");
+    }
+  }
+
   render() {
     const { listUsers } = this.props;
+    console.log(">>> Call me render");
     return (
       <>
         <div>
