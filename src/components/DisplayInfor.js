@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import "./DisplayInfor.scss";
 import logo from "./../logo.svg";
 
@@ -39,6 +39,15 @@ const DisplayInfor = (props) => {
   const handleShowHide = () => {
     setIsShowHide(!isShowHide);
   };
+
+  //useEffect  =  componentDidMount & componentDidUpdate
+  useEffect(() => console.log("1234"), []);
+  useEffect(() => {
+    if (listUsers.length === 5) {
+      alert("Hoy have 5 users");
+    }
+  }, [listUsers]);
+
   return (
     <>
       <div>
@@ -47,6 +56,7 @@ const DisplayInfor = (props) => {
         </button>
       </div>
       {/* <img src={logo} /> */}
+
       <div className="display-infor-container">
         {isShowHide &&
           listUsers.map((user) => (

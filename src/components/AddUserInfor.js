@@ -58,12 +58,10 @@ const AddUserInfor = (props) => {
 
   const handleOnChangeName = (event) => {
     setName(event.target.value);
-    console.log(name);
   };
 
   const handleOnChangeAge = (event) => {
     setAge(event.target.value);
-    console.log(age);
   };
 
   const handleOnSubmit = (event) => {
