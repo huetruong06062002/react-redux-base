@@ -37,6 +37,7 @@ export default class MyComponent extends Component {
           age={29}
           listUsers={this.state.listUsers}
           handleDeleteUser={this.handleDeleteUser}
+          handleShowHide={this.handleShowHide}
         />
       </>
     );
