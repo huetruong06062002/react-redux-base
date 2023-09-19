@@ -34,6 +34,7 @@ import logo from "./../logo.svg";
 
 const DisplayInfor = (props) => {
   const { listUsers } = props;
+  // console.log(listUsers);
   const [isShowHide, setIsShowHide] = useState(true);
   const handleShowHide = () => {
     setIsShowHide(!isShowHide);
@@ -49,12 +50,10 @@ const DisplayInfor = (props) => {
       <div className="display-infor-container">
         {isShowHide &&
           listUsers.map((user) => (
-            <div key={user.id} className={~~user.age <= 18 ? "red" : "green"}>
+            <div key={user.id} className={+user.age <= 18 ? "red" : "green"}>
               <p>Name: {user.name} </p>
               <p>Age: {user.age} </p>
-              <button onClick={() => this.props.handleDeleteUser(user.id)}>
-                X
-              </button>
+              <button onClick={() => props.handleDeleteUser(user.id)}>X</button>
               <hr />
             </div>
           ))}
