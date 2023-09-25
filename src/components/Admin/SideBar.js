@@ -23,6 +23,7 @@ import sidebarBg from "../../assets/bg2.jpg";
 import { GiFluffyWing, GiLibertyWing } from "react-icons/gi";
 import { TbLayoutSidebarLeftExpand } from "react-icons/tb";
 
+import { Link } from "react-router-dom";
 const SideBar = (props) => {
   const { image, collapsed, toggled, handleToggleSidebar } = props;
   return (
@@ -66,6 +67,7 @@ const SideBar = (props) => {
               suffix={<span className="badge red">New</span>}
             >
               Dashboard
+              <Link to="/admins" />
             </MenuItem>
             <MenuItem icon={<FaGem />}> components </MenuItem>
           </Menu>
@@ -75,7 +77,11 @@ const SideBar = (props) => {
               suffix={<span className="badge yellow">3</span>}
               icon={<FaRegLaughWink />}
             >
-              <MenuItem> Quản lí Users</MenuItem>
+              <MenuItem>
+                {" "}
+                Quản lí Users
+                <Link to="/admins/manage-users" />
+              </MenuItem>
               <MenuItem> Quản lí ....</MenuItem>
               <MenuItem> Quản lí ...</MenuItem>
             </SubMenu>
