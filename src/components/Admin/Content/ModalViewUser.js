@@ -13,7 +13,6 @@ const ModalViewUser = (props) => {
   const handleClose = () => {
     setShow(false);
   };
-  console.log(dataUpdate);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

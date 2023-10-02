@@ -1,6 +1,7 @@
 import ModalCreateUser from "./ModalCreateUser";
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalViewUser from "./ModalViewUser";
+import ModalDeleteUser from "./ModalDeleteUser";
 import "./ManageUser.scss";
 import { FcPlus } from "react-icons/fc";
 import TableUser from "./TableUser";
@@ -11,6 +12,7 @@ const ManagerUser = (props) => {
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
   const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
   const [showModalViewUser, setShowModalViewUser] = useState(false);
+  const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
 
   const [dataUpdate, setDataUpdate] = useState({});
 
@@ -27,6 +29,11 @@ const ManagerUser = (props) => {
 
   const handleClickBtnViewUser = (user) => {
     setShowModalViewUser(true);
+    setDataUpdate(user);
+  };
+
+  const handleClickBtnDeleteUser = (user) => {
+    setShowModalDeleteUser(true);
     setDataUpdate(user);
   };
 
@@ -58,6 +65,7 @@ const ManagerUser = (props) => {
             listUsers={listUsers}
             handleClickBtnUpdateUser={handleClickBtnUpdateUser}
             handleClickBtnViewUser={handleClickBtnViewUser}
+            handleClickBtnDeleteUser={handleClickBtnDeleteUser}
           />
         </div>
       </div>
@@ -78,6 +86,13 @@ const ManagerUser = (props) => {
         show={showModalViewUser}
         setShow={setShowModalViewUser}
         dataUpdate={dataUpdate}
+      />
+
+      <ModalDeleteUser
+        show={showModalDeleteUser}
+        setShow={setShowModalDeleteUser}
+        dataUpdate={dataUpdate}
+        fetchAllUsers={fetchAllUsers}
       />
     </div>
   );
