@@ -56,14 +56,6 @@ const ModalCreateUser = (props) => {
     }
 
     //call apis
-    // let data = {
-    //   email: email,
-    //   password: password,
-    //   username: username,
-    //   role: role,
-    //   userImage: image,
-    // };
-    // console.log(data);
 
     let data = await postCreateNewUser(email, password, username, role, image);
     console.log("component res: ", data);
