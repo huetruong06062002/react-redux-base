@@ -24,13 +24,13 @@ const TableUser = (props) => {
                 <td>
                   {" "}
                   <button className="btn btn-info">View</button>
-                  <button className="btn btn-danger mx-3">Delete</button>
                   <button
-                    className="btn btn-secondary"
+                    className="btn btn-secondary mx-3"
                     onClick={() => handleClickBtnUpdateUser(item)}
                   >
                     Update
                   </button>
+                  <button className="btn btn-danger">Delete</button>
                 </td>
               </tr>
             );

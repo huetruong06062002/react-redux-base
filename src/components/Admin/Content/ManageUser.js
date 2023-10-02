@@ -14,6 +14,10 @@ const ManagerUser = (props) => {
 
   const [listUsers, setListUsers] = useState([]);
 
+  const resetDataUpdate = () => {
+    setDataUpdate({});
+  };
+
   const handleClickBtnUpdateUser = (user) => {
     setShowModalUpdateUser(true);
     setDataUpdate(user);
@@ -59,6 +63,8 @@ const ManagerUser = (props) => {
         show={showModalUpdateUser}
         setShow={setShowModalUpdateUser}
         dataUpdate={dataUpdate}
+        fetchAllUsers={fetchAllUsers}
+        resetDataUpdate={resetDataUpdate}
       />
     </div>
   );

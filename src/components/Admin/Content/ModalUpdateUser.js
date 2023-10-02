@@ -4,11 +4,11 @@ import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { postCreateNewUser } from "../../../services/userServices";
+import { putUpdateNewUser } from "../../../services/userServices";
 import _ from "lodash";
 
 const ModalUpdateUser = (props) => {
-  const { show, setShow, dataUpdate } = props;
+  const { show, setShow, dataUpdate, resetDataUpdate } = props;
 
   const handleClose = () => {
     setShow(false);
@@ -17,6 +17,7 @@ const ModalUpdateUser = (props) => {
     setUsername("");
     setRole("");
     setImage("");
+    resetDataUpdate();
   };
 
   const [email, setEmail] = useState("");
@@ -37,14 +38,6 @@ const ModalUpdateUser = (props) => {
     }
   }, [dataUpdate]);
 
-  const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
-
   const handleUploadImage = (event) => {
     if (event.target && event.target.files && event.target.files[0]) {
       setPreviewImage(URL.createObjectURL(event.target.files[0]));
@@ -55,21 +48,12 @@ const ModalUpdateUser = (props) => {
     console.log("upload file", event.target.files[0]);
   };
 
-  const handleSubmitCreateUser = async () => {
+  const handleSubmitUpdateUser = async () => {
     //validate
-    const isValidEmail = validateEmail(email);
-    if (!isValidEmail) {
-      toast.error(`Invalid email`);
-      return;
-    }
-    if (!password) {
-      toast.error("Invalid password");
-      return;
-    }
 
     //call apis
 
-    let data = await postCreateNewUser(email, password, username, role, image);
+    let data = await putUpdateNewUser(dataUpdate.id, username, role, image);
     console.log("component res: ", data);
     if (data && data.EC === 0) {
       toast.success(data.EM);
@@ -172,7 +156,7 @@ const ModalUpdateUser = (props) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={(e) => handleSubmitCreateUser(e)}>
+          <Button variant="primary" onClick={(e) => handleSubmitUpdateUser(e)}>
             Save
           </Button>
         </Modal.Footer>
