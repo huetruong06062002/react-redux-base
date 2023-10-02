@@ -1,22 +1,10 @@
-import { useState } from "react";
-import { getAllUsers } from "../../../services/userServices";
-import { useEffect } from "react";
-const TableUser = () => {
-  const [listUsers, setListUsers] = useState([]);
-
-  useEffect(() => {
-    fetchAllUsers();
-  }, []);
-  const fetchAllUsers = async () => {
-    let res = await getAllUsers();
-    setListUsers(res.DT);
-  };
-
+const TableUser = (props) => {
+  const { listUsers } = props;
   return (
     <table className="table table-striped table-hover">
       <thead>
         <tr>
-          <th scope="col">No</th>
+          <th scope="col">ID</th>
           <th scope="col">User name</th>
           <th scope="col">Email</th>
           <th scope="col">Role</th>
@@ -30,7 +18,7 @@ const TableUser = () => {
             console.log(item);
             return (
               <tr key={`table-user-${index}`}>
-                <th scope="row">{index + 1}</th>
+                <th scope="row">{item.id}</th>
                 <td>{item.username}</td>
                 <td>{item.email}</td>
                 <td>{item.role}</td>
@@ -43,6 +31,12 @@ const TableUser = () => {
               </tr>
             );
           })}
+
+        {listUsers && listUsers.length === 0 && (
+          <tr>
+            <td colSpan={4}>Not found data</td>
+          </tr>
+        )}
       </tbody>
     </table>
   );
