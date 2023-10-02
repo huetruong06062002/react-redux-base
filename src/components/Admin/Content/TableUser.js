@@ -1,5 +1,5 @@
 const TableUser = (props) => {
-  const { listUsers } = props;
+  const { listUsers, handleClickBtnUpdateUser } = props;
   return (
     <table className="table table-striped table-hover">
       <thead>
@@ -15,7 +15,6 @@ const TableUser = (props) => {
         {listUsers &&
           listUsers.length > 0 &&
           listUsers.map((item, index) => {
-            console.log(item);
             return (
               <tr key={`table-user-${index}`}>
                 <th scope="row">{item.id}</th>
@@ -26,7 +25,12 @@ const TableUser = (props) => {
                   {" "}
                   <button className="btn btn-info">View</button>
                   <button className="btn btn-danger mx-3">Delete</button>
-                  <button className="btn btn-secondary">Update</button>
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => handleClickBtnUpdateUser(item)}
+                  >
+                    Update
+                  </button>
                 </td>
               </tr>
             );
