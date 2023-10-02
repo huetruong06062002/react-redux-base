@@ -19,11 +19,11 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   //only get response.data
   function (response) {
-    console.log(">>> interceptor", response);
+    // console.log(">>> interceptor", response);
     return response && response.data ? response.data : response;
   },
   function (error) {
-    console.log(">>> run error: ", error.response);
+    // console.log(">>> run error: ", error.response);
     return error && error.response & error.response.data
       ? error.response.data
       : Promise.reject(error);
