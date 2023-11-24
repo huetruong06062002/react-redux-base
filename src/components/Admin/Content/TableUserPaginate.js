@@ -1,11 +1,25 @@
-const TableUser = (props) => {
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
+import ReactPaginate from "react-paginate";
+
+const TableUserPaginate = (props) => {
   const {
     listUsers,
     handleClickBtnUpdateUser,
     handleClickBtnViewUser,
     handleClickBtnDeleteUser,
+    fetchAllUsersWithPaginate,
+    pageCount,
+    currentPage,
   } = props;
   console.log(props);
+
+  const handlePageClick = (event) => {
+    fetchAllUsersWithPaginate(+event.selected + 1);
+    props.setCurrentPage(+event.selected + 1);
+    console.log(`User requested page number ${event.selected}`);
+  };
+
   return (
     <>
       <table className="table table-striped table-hover table-bordered">
@@ -22,7 +36,6 @@ const TableUser = (props) => {
           {listUsers &&
             listUsers.length > 0 &&
             listUsers.map((item, index) => {
-              console.log(index);
               return (
                 <tr key={`table-user-${index}`}>
                   <th scope="row">{item.id}</th>
@@ -60,8 +73,30 @@ const TableUser = (props) => {
           )}
         </tbody>
       </table>
+      <div className="user-pagination d-flex justify-center">
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel="Next >"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={pageCount}
+          previousLabel="< Pre"
+          renderOnZeroPageCount={null}
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          previousLinkClassName="page-link"
+          nextClassName="page-item"
+          nextLinkClassName="page-link"
+          breakClassName="page-item"
+          breakLinkClassName="page-link"
+          containerClassName="pagination"
+          activeClassName="active"
+          forcePage={currentPage - 1}
+        />
+      </div>
     </>
   );
 };
 
-export default TableUser;
+export default TableUserPaginate;

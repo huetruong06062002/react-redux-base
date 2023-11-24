@@ -78,7 +78,6 @@ const SideBar = (props) => {
               icon={<FaRegLaughWink />}
             >
               <MenuItem>
-                {" "}
                 Quản lí Users
                 <Link to="/admins/manage-users" />
               </MenuItem>

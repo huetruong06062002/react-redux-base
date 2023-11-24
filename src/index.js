@@ -9,9 +9,10 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import User from "./components/Users/User";
 import Admin from "./components/Admin/Admin";
 import HomePage from "./components/Home/HomePage";
-import ManagerUser from "./components/Admin/Content/ManageUser";
 import DashBoard from "./components/Admin/Content/DashBoard";
 import { AnimatePresence } from "framer-motion";
+import ManagerUser from "./components/Admin/Content/ManageUser";
+import Login from "./components/Auth/Login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -30,6 +31,7 @@ root.render(
             <Route index element={<DashBoard />} />
             <Route path="manage-users" element={<ManagerUser />} />
           </Route>
+          <Route path="/login" element={<Login />} />
         </Routes>
       </AnimatePresence>
     </BrowserRouter>

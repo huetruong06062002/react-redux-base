@@ -13,14 +13,16 @@ const ModalDeleteUser = (props) => {
     setShow(false);
   };
 
-  const handleSubmitCreateUser = async () => {
+  const handleSubmitDeleteUser = async () => {
     //call apis
     let data = await deleteUser(dataUpdate.id);
     console.log("component res: ", data);
     if (data && data.EC === 0) {
       toast.success(data.EM);
       handleClose();
-      await props.fetchAllUsers();
+      // await props.fetchAllUsers();
+      props.setCurrentPage(1);
+      await props.fetchAllUsersWithPaginate(1);
     }
     if (data && data.EC !== 0) {
       toast.error(data.EM);
@@ -49,7 +51,7 @@ const ModalDeleteUser = (props) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={(e) => handleSubmitCreateUser(e)}>
+          <Button variant="primary" onClick={(e) => handleSubmitDeleteUser(e)}>
             Save
           </Button>
         </Modal.Footer>
