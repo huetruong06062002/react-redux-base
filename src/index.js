@@ -1,18 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
+
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import User from "./components/Users/User";
-import Admin from "./components/Admin/Admin";
-import HomePage from "./components/Home/HomePage";
-import DashBoard from "./components/Admin/Content/DashBoard";
-import { AnimatePresence } from "framer-motion";
-import ManagerUser from "./components/Admin/Content/ManageUser";
-import Login from "./components/Auth/Login";
+import Layout from "./Layout";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -20,20 +14,7 @@ root.render(
   <Provider store={store}>
     {/* <React.StrictMode> */}
     <BrowserRouter>
-      {/* The rest of your app goes here */}
-      <AnimatePresence>
-        <Routes>
-          <Route path="/" element={<App />}>
-            <Route index element={<HomePage />} />
-            <Route path="/users" element={<User />} />
-          </Route>
-          <Route path="/admins" element={<Admin />}>
-            <Route index element={<DashBoard />} />
-            <Route path="manage-users" element={<ManagerUser />} />
-          </Route>
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </AnimatePresence>
+      <Layout />
     </BrowserRouter>
 
     {/* </React.StrictMode> */}
