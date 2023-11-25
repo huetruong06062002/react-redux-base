@@ -23,13 +23,21 @@ const Login = () => {
     }
   };
   return (
-    <div className="login-container">
+    <div className="login-container mx-auto">
       <div className="header">
         <span>Don't have an account yet?</span>
-        <button>Sign Up</button>
+        <button
+          onClick={() => {
+            navigate("/register");
+          }}
+        >
+          Sign Up
+        </button>
       </div>
       <div className="title col-4 mx-auto">Chicken Dev</div>
-      <div className="welcome col-4 mx-auto">Hello, who's this?</div>
+      <div className="welcome col-4 mx-auto" style={{ marginLeft: "10px" }}>
+        Hello, who's this?
+      </div>
       <div className="content-form col-4 mx-auto">
         <div className="form-group">
           <label>Email</label>
