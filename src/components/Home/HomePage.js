@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import VideoHomePage from "../../assets/video-homepage.mp4";
-
+import { useNavigate } from "react-router";
 const HomePage = () => {
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const navigate = useNavigate();
   return (
     <div className="homepage-container">
       <video muted autoPlay loop>
@@ -19,7 +22,24 @@ const HomePage = () => {
           unchanged.
         </div>
         <div className="title-3">
-          <button>Lorem Ipsum has been</button>
+          {isAuthenticated === false ? (
+            <button
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Get's started. It's free
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                navigate("/users");
+              }}
+            >
+              {" "}
+              Doing Quiz Now
+            </button>
+          )}
         </div>
       </div>
     </div>
