@@ -5,26 +5,37 @@ import { postLogin } from "../../services/userServices";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { doLogin } from "../../redux/action/userAction";
-
+import { ImSpinner } from "react-icons/im";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispath = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async () => {
     //validate
 
+    if (!email) {
+      toast.error("Email can't be empty");
+    }
+    if (!password) {
+      toast.error("Password can't be empty");
+    }
+
+    setIsLoading(true);
     //submit apis
     let data = await postLogin(email, password);
     if (data && data.EC === 0) {
       dispath(doLogin(data));
       toast.success(data.EM);
+      setIsLoading(false);
       navigate("/");
     }
 
     if (data && +data.EC !== 0) {
       toast.error(data.EM);
+      setIsLoading(false);
     }
   };
   return (
@@ -64,7 +75,12 @@ const Login = () => {
         </div>
         <span className="forgot-password">Forgot password?</span>
         <div>
-          <button className="btn-submit" onClick={() => handleLogin()}>
+          <button
+            className="btn-submit"
+            onClick={() => handleLogin()}
+            disabled={isLoading}
+          >
+            {isLoading && <ImSpinner className="loading" />}
             Login to Hoidanit
           </button>
         </div>

@@ -1,4 +1,18 @@
 .login-container {
+    .loading {
+        animation: rotation 2s infinite linear;
+        margin-left: 2px;
+    }
+
+    @keyframes rotation {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
     .header {
         padding: 5px 100px 0 100px;
         height: 45px;
@@ -42,6 +56,11 @@
             margin: 20px 0;
             color: white;
             background: black;
+            &:disabled {
+                background: #dddddd;
+                color: #afafaf;
+                cursor: no-drop;
+            }
         }
 
         .back {
