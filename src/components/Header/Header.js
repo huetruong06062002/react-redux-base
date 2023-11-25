@@ -3,8 +3,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 function Header() {
   const navigate = useNavigate();
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const account = useSelector((state) => state.user.account);
+
+  console.log("account:", account, "isAuthenticated:", isAuthenticated);
   const handleLogin = () => {
     navigate("/login");
   };
@@ -34,31 +39,31 @@ function Header() {
             <Nav.Link href="#link">Admin</Nav.Link> */}
           </Nav>
           <Nav>
-            <button
-              className="btn-login"
-              onClick={() => {
-                handleLogin();
-              }}
-            >
-              Login
-            </button>
-            <button
-              className="btn-signup"
-              onClick={() => {
-                handleRegister();
-              }}
-            >
-              Sign up
-            </button>
-            <NavDropdown title="Setting" id="basic-nav-dropdown">
-              <NavDropdown.Item>Log in</NavDropdown.Item>
-              <NavDropdown.Item>Log out</NavDropdown.Item>
-              <NavDropdown.Item>Profile</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+            {isAuthenticated === false ? (
+              <>
+                <button
+                  className="btn-login"
+                  onClick={() => {
+                    handleLogin();
+                  }}
+                >
+                  Login
+                </button>
+                <button
+                  className="btn-signup"
+                  onClick={() => {
+                    handleRegister();
+                  }}
+                >
+                  Sign up
+                </button>
+              </>
+            ) : (
+              <NavDropdown title="Setting" id="basic-nav-dropdown">
+                <NavDropdown.Item>Log out</NavDropdown.Item>
+                <NavDropdown.Item>Profile</NavDropdown.Item>
+              </NavDropdown>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
