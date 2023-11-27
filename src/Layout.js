@@ -11,6 +11,15 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Register from "./components/Auth/Register";
 import ListQuiz from "./components/Users/ListQuiz";
 import Logout from "./components/Auth/Logout";
+import DetailQuiz from "./components/Users/DetailQuiz";
+
+const NotFound = () => {
+  return (
+    <div className="container mt-3 alert alert-danger">
+      404.Not Found data with current your URL
+    </div>
+  );
+};
 
 const Layout = (props) => {
   return (
@@ -20,6 +29,7 @@ const Layout = (props) => {
           <Route index element={<HomePage />} />
           <Route path="/users" element={<ListQuiz />} />
         </Route>
+        <Route path="/quiz/:QuizId" element={<DetailQuiz />} />
         <Route path="/admins" element={<Admin />}>
           <Route index element={<DashBoard />} />
           <Route path="manage-users" element={<ManagerUser />} />
@@ -27,6 +37,7 @@ const Layout = (props) => {
         <Route path="/logout" element={<Login />} />
         <Route path="/login" element={<Logout />} />
         <Route path="/register" element={<Register />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer
         position="top-center"
