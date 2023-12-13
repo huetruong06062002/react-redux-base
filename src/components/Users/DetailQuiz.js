@@ -1,17 +1,20 @@
 import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, useLocation } from "react-router";
 import { getDataQuizById } from "../../services/userServices";
 import _ from "lodash";
+import "./DetailQuiz.scss";
 const DetailQuiz = (props) => {
   const params = useParams();
+  const location = useLocation();
+  console.log(location);
   const quizId = params.QuizId;
+  console.log(quizId);
   useEffect(() => {
     fetchQuestions();
   }, [quizId]);
   const fetchQuestions = async () => {
     let res = await getDataQuizById(quizId);
     let raw = res.DT;
-    console.log(raw);
     console.log(
       _.chain(raw)
         // Group the elements of Array based on `color` property
@@ -22,7 +25,6 @@ const DetailQuiz = (props) => {
           let questionDescription,
             image = null;
           value.forEach((item, index) => {
-            console.log(index);
             if (index === 0) {
               questionDescription = item.description;
               image = item.image;
@@ -35,7 +37,30 @@ const DetailQuiz = (props) => {
         .value()
     );
   };
-  return <div className="detail-quiz-container">Detail Quiz</div>;
+  return (
+    <div className="detail-quiz-container">
+      <div className="left-content">
+        <div className="title">Quiz 1: {location?.state.quizTitle}</div>
+        <hr />
+        <div className="q-body">
+          <img />
+        </div>
+        <div className="q-content">
+          <div className="question">Question 1: How are you doing?</div>
+          <div className="answer">
+            <div className="a-child">A. ádasdasd</div>
+            <div className="a-child">B. ádasdasd</div>
+            <div className="a-child">C. ádasdasd</div>
+          </div>
+        </div>
+        <div className="footer">
+          <button className="btn btn-primary mr-3">Next</button>
+          <button className="btn btn-secondary">Previous</button>
+        </div>
+      </div>
+      <div className="right-content">count down</div>
+    </div>
+  );
 };
 
 export default DetailQuiz;
