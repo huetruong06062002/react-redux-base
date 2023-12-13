@@ -18,6 +18,7 @@ const ListQuiz = (props) => {
       setArraQuiz(res.DT);
     }
   };
+
   return (
     <div className="list-quiz-container container">
       {arrQuiz &&
