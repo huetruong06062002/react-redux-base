@@ -23,9 +23,10 @@ import sidebarBg from "../../assets/bg2.jpg";
 import { GiFluffyWing, GiLibertyWing } from "react-icons/gi";
 import { TbLayoutSidebarLeftExpand } from "react-icons/tb";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const SideBar = (props) => {
   const { image, collapsed, toggled, handleToggleSidebar } = props;
+  const navigate = useNavigate();
   return (
     <>
       <ProSidebar
@@ -53,7 +54,7 @@ const SideBar = (props) => {
             ) : (
               <>
                 <GiFluffyWing size={"3em"} color={"00bfff"} />
-                <p>SideBar</p>
+                <p onClick={()=> {navigate('/')}} style={{cursor:"pointer"}}>Side Bar</p>
                 <GiLibertyWing size={"3em"} color={"00bfff"} />
               </>
             )}
@@ -81,7 +82,11 @@ const SideBar = (props) => {
                 Quản lí Users
                 <Link to="/admins/manage-users" />
               </MenuItem>
-              <MenuItem> Quản lí ....</MenuItem>
+              <MenuItem>
+                {" "}
+                Quản lí Bài Quizs
+                <Link to="/admins/manage-quizzes" />
+              </MenuItem>
               <MenuItem> Quản lí ...</MenuItem>
             </SubMenu>
           </Menu>
