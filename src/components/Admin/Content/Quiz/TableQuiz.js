@@ -18,7 +18,7 @@ const TableQuiz = (props) => {
   return (
     <>
       <div>List Quizzes:</div>
-      <table className="table table-hover table-bordered mt-2">
+      <table className="table table-hover table-bordered my-2">
         <thead>
           <tr>
             <th scope="col">ID</th>
@@ -34,7 +34,7 @@ const TableQuiz = (props) => {
               return (
                 <tr key={`table-quiz-${index}`}>
                   <th>{item.id}</th>
-                  <th>{item.name}</th>
+                  <td>{item.name}</td>
                   <td>{item.description}</td>
                   <td>{item.difficulty}</td>
                   <td style={{ display: "flex", gap: "15px" }}>
