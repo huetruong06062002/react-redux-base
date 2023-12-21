@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ManageQuiz.scss";
 import Select from "react-select";
-import { postCreateNewQuiz } from "../../../../services/userServices";
+import { getAllQuizForAdmin, postCreateNewQuiz } from "../../../../services/userServices";
 import { toast } from "react-toastify";
 import TableQuiz from "./TableQuiz";
 import Accordion from "react-bootstrap/Accordion";
@@ -10,7 +10,7 @@ const options = [
   { value: "MEDIUM", label: "MEDIUM" },
   { value: "HARD", label: "HARD" },
 ];
-const ManageQuiz = (props) => {
+const ManageQuiz = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState("EASY");
@@ -35,6 +35,7 @@ const ManageQuiz = (props) => {
       setName("");
       setDescription("");
       setImage(null);
+      await getAllQuizForAdmin();
     } else {
       toast.error(res.EM);
     }
@@ -99,7 +100,7 @@ const ManageQuiz = (props) => {
       </Accordion>
       <hr></hr>
       <div className="list-detail">
-        <TableQuiz />
+        <TableQuiz  />
       </div>
     </div>
   );
